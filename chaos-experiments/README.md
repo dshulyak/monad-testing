@@ -24,15 +24,15 @@ simulates unreliable network conditions affecting message delivery.
 
 simulates network split-brain scenarios where nodes cannot communicate.
 
-### 3. pod kill
+### 3. pod failure
 - **file**: `pod-kill.yaml`
 - **schedule**: every 25 minutes
 - **targets**: latency-6, latency-7
-- **effect**: pod termination and restart
-- **duration**: 4 minutes (recovery time)
-- **grace period**: 0 (immediate kill)
+- **effect**: makes pods unavailable (not ready)
+- **duration**: 4 minutes
+- **note**: pods remain running but become unreachable
 
-simulates node crashes and recovery behavior.
+simulates node failures where pods become unavailable but eventually recover without restart.
 
 ## constant experiments
 

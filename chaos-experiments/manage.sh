@@ -8,7 +8,7 @@ usage() {
     echo "periodic experiments:"
     echo "  network-packet-loss  - 7% packet loss on latency-1,2,3 every 15min for 7min"
     echo "  network-partition    - isolate latency-4,5 every 20min for 3.5min"
-    echo "  pod-kill            - kill latency-6,7 every 25min for 4min"
+    echo "  pod-failure          - make latency-6,7 unavailable every 25min for 4min"
     echo ""
     echo "constant experiments:"
     echo "  network-latency-constant - 5 buckets with 20ms incremental latency (20-100ms)"
@@ -64,12 +64,12 @@ disable_experiment() {
         echo "disabling all periodic chaos experiments..."
         kubectl delete schedule network-packet-loss -n default --ignore-not-found
         kubectl delete schedule network-partition -n default --ignore-not-found
-        kubectl delete schedule pod-kill -n default --ignore-not-found
+        kubectl delete schedule pod-failure -n default --ignore-not-found
     elif [ "$exp" = "all-with-latency" ]; then
         echo "disabling all chaos experiments including constant latency..."
         kubectl delete schedule network-packet-loss -n default --ignore-not-found
         kubectl delete schedule network-partition -n default --ignore-not-found
-        kubectl delete schedule pod-kill -n default --ignore-not-found
+        kubectl delete schedule pod-failure -n default --ignore-not-found
         kubectl delete networkchaos latency-b1-to-b2 -n default --ignore-not-found
         kubectl delete networkchaos latency-b1-to-b3 -n default --ignore-not-found
         kubectl delete networkchaos latency-b1-to-b4 -n default --ignore-not-found
