@@ -90,12 +90,14 @@ data:
         --cluster /config/cluster.toml \
         --cluster-size 10 \
         --interval 10s \
-        --size 2MB
+        --size 2MB \
+        --otel-endpoint http://otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317
     else
       echo "starting as consumer"
       exec /app/latency consumer \
         --cluster /config/cluster.toml \
-        --cluster-size 10
+        --cluster-size 10 \
+        --otel-endpoint http://otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317
     fi
 
 ---

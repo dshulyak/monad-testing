@@ -42,6 +42,27 @@ start_minikube() {
     echo "minikube started successfully"
 }
 
+configure_calico() {
+    echo "configuring calico ippool for static IPs"
+
+    cat > /tmp/calico-ippool.yaml <<EOF
+apiVersion: crd.projectcalico.org/v1
+kind: IPPool
+metadata:
+  name: latency-pool
+spec:
+  cidr: 10.1.0.0/24
+  ipipMode: Never
+  natOutgoing: true
+  disabled: false
+  nodeSelector: all()
+EOF
+
+    kubectl apply -f /tmp/calico-ippool.yaml
+
+    echo "calico ippool configured"
+}
+
 install_chaos_mesh() {
     echo "installing chaos mesh via helm"
 
@@ -69,9 +90,26 @@ install_grafana() {
     kubectl create namespace monitoring || true
 
     echo "installing prometheus for metrics"
+    cat > /tmp/prometheus-values.yaml <<EOF
+serverFiles:
+  prometheus.yml:
+    scrape_configs:
+      - job_name: prometheus
+        static_configs:
+          - targets:
+              - localhost:9090
+
+      - job_name: otel-collector
+        static_configs:
+          - targets:
+              - otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:8889
+        scrape_interval: 10s
+EOF
+
     helm install prometheus prometheus-community/prometheus \
         --namespace=monitoring \
-        --set server.service.type=ClusterIP
+        --set server.service.type=ClusterIP \
+        -f /tmp/prometheus-values.yaml
 
     echo "installing loki for logs"
     helm install loki grafana/loki-stack \
@@ -94,6 +132,11 @@ ports:
     enabled: true
     containerPort: 8888
     servicePort: 8888
+    protocol: TCP
+  prometheus:
+    enabled: true
+    containerPort: 8889
+    servicePort: 8889
     protocol: TCP
 config:
   receivers:
@@ -185,6 +228,7 @@ main() {
     install_minikube
     install_dependencies
     start_minikube
+    configure_calico
     install_chaos_mesh
     install_grafana
     print_access_info

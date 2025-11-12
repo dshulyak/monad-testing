@@ -3,6 +3,10 @@ set -e
 
 NAMESPACE=default
 
+echo "ensuring calico ippool exists"
+kubectl apply -f calico-ippool.yaml
+
+echo ""
 echo "deploying latency cluster with static IPs"
 kubectl apply -f k8s-latency.yaml
 

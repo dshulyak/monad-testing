@@ -10,7 +10,14 @@ kubernetes test environment for monad bft latency testing with chaos mesh and ob
 ./setup.sh
 ```
 
-installs minikube with calico cni, chaos mesh, grafana, prometheus, loki, and otel collector.
+installs:
+- minikube with calico cni
+- calico ippool for static IPs (10.1.0.0/24)
+- chaos mesh with dashboard
+- prometheus configured to scrape otel collector
+- loki for log aggregation
+- opentelemetry collector with prometheus exporter on port 8889
+- grafana with prometheus and loki datasources
 
 ### 2. build latency image
 
@@ -53,13 +60,23 @@ IPs match the cluster config exactly (10.1.0.1 - 10.1.0.10)
 ## accessing services
 
 ### grafana
+
+get the grafana URL:
 ```bash
-minikube service grafana -n monitoring
+minikube service grafana -n monitoring --url
 ```
+
+if running on a remote VM via SSH, use port forwarding:
+```bash
+ssh -L 8080:<grafana-ip>:<grafana-port> user@vm-host
+```
+
+then access at http://localhost:8080
+
 credentials: admin/admin
 
 datasources:
-- prometheus: metrics
+- prometheus: metrics (includes raptorcast metrics from otel collector)
 - loki: logs
 
 ### chaos mesh dashboard
@@ -117,9 +134,10 @@ kubectl delete configmap latency-config
 
 ## file structure
 
-- `setup.sh`: infrastructure setup with calico cni
-- `build.sh`: builds latency docker image
-- `deploy.sh`: generates config and deploys latency cluster
-- `Dockerfile`: latency container image
-- `k8s-latency.yaml`: kubernetes pod manifests with static IPs
-- `cluster.toml`: generated cluster configuration
+- `setup.sh`: infrastructure setup with calico cni, ippool, monitoring stack
+- `build.sh`: builds latency docker image in minikube
+- `deploy.sh`: deploys latency cluster with static IPs
+- `Dockerfile`: latency container image definition
+- `k8s-latency.yaml`: kubernetes pod manifests with static IPs and cluster config
+- `calico-ippool.yaml`: calico ippool definition for 10.1.0.0/24
+- `cluster.toml`: generated cluster configuration (gitignored)
