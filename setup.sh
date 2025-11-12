@@ -73,8 +73,8 @@ install_chaos_mesh() {
 
     helm install chaos-mesh chaos-mesh/chaos-mesh \
         --namespace=chaos-mesh \
-        --set chaosDaemon.runtime=containerd \
-        --set chaosDaemon.socketPath=/run/containerd/containerd.sock \
+        --set chaosDaemon.runtime=docker \
+        --set chaosDaemon.socketPath=/var/run/docker.sock \
         --set dashboard.create=true
 
     echo "chaos mesh installed successfully"
