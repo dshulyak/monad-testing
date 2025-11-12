@@ -1,0 +1,22 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: Schedule
+metadata:
+  name: pod-kill
+  namespace: default
+spec:
+  schedule: "*/25 * * * *"
+  type: PodChaos
+  podChaos:
+    action: pod-kill
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        app: latency
+      pods:
+        default:
+          - latency-6
+          - latency-7
+    duration: "4m"
+    gracePeriod: 0

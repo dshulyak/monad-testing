@@ -1,0 +1,250 @@
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b1-to-b2
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-1
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-2
+  delay:
+    latency: "20ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b1-to-b3
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-1
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-3
+  delay:
+    latency: "40ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b1-to-b4
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-1
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-4
+  delay:
+    latency: "60ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b1-to-b5
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-1
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-5
+  delay:
+    latency: "80ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b2-to-b3
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-2
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-3
+  delay:
+    latency: "20ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b2-to-b4
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-2
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-4
+  delay:
+    latency: "40ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b2-to-b5
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-2
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-5
+  delay:
+    latency: "60ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b3-to-b4
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-3
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-4
+  delay:
+    latency: "20ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b3-to-b5
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-3
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-5
+  delay:
+    latency: "40ms"
+  direction: both
+  duration: "999999h"
+---
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: latency-b4-to-b5
+  namespace: default
+spec:
+  action: delay
+  mode: all
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      latency-bucket: bucket-4
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        latency-bucket: bucket-5
+  delay:
+    latency: "20ms"
+  direction: both
+  duration: "999999h"

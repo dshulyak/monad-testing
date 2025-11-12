@@ -32,6 +32,24 @@ kubectl port-forward -n chaos-mesh svc/chaos-dashboard 2333:2333
 ```
 access at http://localhost:2333
 
+## chaos experiments
+
+run periodic chaos experiments to test resilience:
+
+```bash
+cd chaos-experiments
+
+./manage.sh enable network-packet-loss
+./manage.sh enable network-partition
+./manage.sh enable pod-kill
+./manage.sh enable all
+
+./manage.sh status
+./manage.sh disable network-packet-loss
+```
+
+see [chaos-experiments/README.md](chaos-experiments/README.md) for details.
+
 ## useful commands
 
 ```bash

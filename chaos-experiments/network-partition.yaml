@@ -1,0 +1,22 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: Schedule
+metadata:
+  name: network-partition
+  namespace: default
+spec:
+  schedule: "*/20 * * * *"
+  type: NetworkChaos
+  networkChaos:
+    action: partition
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        app: latency
+      pods:
+        default:
+          - latency-4
+          - latency-5
+    direction: both
+    duration: "3m30s"
