@@ -325,7 +325,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_state_session_established_initiator{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_state_session_established_initiator{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Established (Initiator)",
           "range": true,
           "refId": "A"
@@ -336,7 +336,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_state_session_established_responder{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_state_session_established_responder{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Established (Responder)",
           "range": true,
@@ -348,7 +348,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_state_session_terminated{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_state_session_terminated{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Terminated",
           "range": true,
@@ -552,7 +552,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_filter_pass{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_filter_pass{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Pass",
           "range": true,
           "refId": "A"
@@ -563,7 +563,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_filter_send_cookie{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_filter_send_cookie{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Send Cookie",
           "range": true,
@@ -575,7 +575,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_filter_drop{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_filter_drop{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Drop",
           "range": true,
@@ -684,7 +684,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_connect{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_connect{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Connect",
           "range": true,
           "refId": "A"
@@ -695,7 +695,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_disconnect{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_disconnect{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Disconnect",
           "range": true,
@@ -791,7 +791,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_encrypt_by_public_key{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_encrypt_by_public_key{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Encrypt by PubKey",
           "range": true,
           "refId": "A"
@@ -802,7 +802,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_encrypt_by_socket{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_encrypt_by_socket{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Encrypt by Socket",
           "range": true,
@@ -814,7 +814,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_decrypt{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_decrypt{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Decrypt",
           "range": true,
@@ -923,7 +923,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_connect{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_connect{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Connect",
           "range": true,
           "refId": "A"
@@ -934,7 +934,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_decrypt{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_decrypt{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Decrypt",
           "range": true,
@@ -946,7 +946,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_encrypt_by_public_key{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_encrypt_by_public_key{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Encrypt PubKey",
           "range": true,
@@ -958,7 +958,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_encrypt_by_socket{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_encrypt_by_socket{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Encrypt Socket",
           "range": true,
@@ -1054,7 +1054,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_session_exhausted{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_session_exhausted{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Session Exhausted",
           "range": true,
           "refId": "A"
@@ -1065,7 +1065,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_mac1_verification_failed{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_mac1_verification_failed{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - MAC1 Verification",
           "range": true,
@@ -1077,7 +1077,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_timestamp_replay{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_timestamp_replay{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Timestamp Replay",
           "range": true,
@@ -1089,7 +1089,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_session_not_found{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_session_not_found{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Session Not Found",
           "range": true,
@@ -1198,7 +1198,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_dispatch_handshake_initiation{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_dispatch_handshake_initiation{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Initiation",
           "range": true,
           "refId": "A"
@@ -1209,7 +1209,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_dispatch_handshake_response{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_dispatch_handshake_response{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Response",
           "range": true,
@@ -1221,7 +1221,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_dispatch_cookie_reply{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_dispatch_cookie_reply{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Cookie Reply",
           "range": true,
@@ -1317,7 +1317,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_enqueued_handshake_init{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_enqueued_handshake_init{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Init",
           "range": true,
           "refId": "A"
@@ -1328,7 +1328,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_enqueued_handshake_response{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_enqueued_handshake_response{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Response",
           "range": true,
@@ -1340,7 +1340,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_enqueued_keepalive{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_enqueued_keepalive{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Keepalive",
           "range": true,
@@ -1556,7 +1556,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_dispatch_control{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_dispatch_control{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Dispatch Control",
           "range": true,
           "refId": "A"
@@ -1567,7 +1567,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_next_packet{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_next_packet{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Next Packet",
           "range": true,
@@ -1579,7 +1579,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_api_tick{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_api_tick{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Tick",
           "range": true,
@@ -1688,7 +1688,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_session_index_not_found{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_session_index_not_found{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Index Not Found",
           "range": true,
           "refId": "A"
@@ -1699,7 +1699,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_invalid_receiver_index{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_invalid_receiver_index{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Invalid Receiver",
           "range": true,
@@ -1711,7 +1711,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_session_not_established_for_address{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_session_not_established_for_address{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Not Established",
           "range": true,
@@ -1723,7 +1723,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_dispatch_control{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_dispatch_control{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Dispatch Control",
           "range": true,
@@ -1819,7 +1819,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_handshake_init_validation{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_handshake_init_validation{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Init Validation",
           "range": true,
           "refId": "A"
@@ -1830,7 +1830,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_handshake_init_responder_new{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_handshake_init_responder_new{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Responder New",
           "range": true,
@@ -1842,7 +1842,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_cookie_reply{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_cookie_reply{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Cookie Reply",
           "range": true,
@@ -1854,7 +1854,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_wireauth_error_handshake_response_validation{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_wireauth_error_handshake_response_validation{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Response Validation",
           "range": true,
@@ -1945,6 +1945,43 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "30s",
+          "value": "30s"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interval",
+        "multi": false,
+        "name": "interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          }
+        ],
+        "query": "30s,1m,5m,10m",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },

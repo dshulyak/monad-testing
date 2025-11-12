@@ -327,7 +327,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(raptorcast_messages_received{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(raptorcast_messages_received{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Received Rate",
           "range": true,
           "refId": "A"
@@ -338,7 +338,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(raptorcast_messages_sent{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(raptorcast_messages_sent{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Sent Rate",
           "range": true,
@@ -607,7 +607,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_written{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_written{exported_job=~\"$job\"}[$interval])",
           "legendFormat": "{{exported_job}} - Auth UDP TX",
           "range": true,
           "refId": "A"
@@ -618,7 +618,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_read{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_read{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Auth UDP RX",
           "range": true,
@@ -630,7 +630,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_written{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_written{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Non-Auth UDP TX",
           "range": true,
@@ -642,7 +642,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_read{exported_job=~\"$job\"}[5m])",
+          "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_read{exported_job=~\"$job\"}[$interval])",
           "hide": false,
           "legendFormat": "{{exported_job}} - Non-Auth UDP RX",
           "range": true,
@@ -733,6 +733,43 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "30s",
+          "value": "30s"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Interval",
+        "multi": false,
+        "name": "interval",
+        "options": [
+          {
+            "selected": true,
+            "text": "30s",
+            "value": "30s"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          }
+        ],
+        "query": "30s,1m,5m,10m",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
