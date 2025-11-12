@@ -1,0 +1,509 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: latency-config
+  namespace: default
+data:
+  cluster.toml: |
+    [[participants]]
+    public_key = "0445bad356c9ab26d80fa5c7b69f3d615eec352067751687a0af3491b9b7f44c0cfa91fb4e738378f1558025ff8f32e38cd910c43573836dc39b0e4a129a8d1476"
+    private_key = "12446882334148d56b85f177064c4c369eee1c62a2401bb5a2c14030b159a9df"
+    tcp_addr = "10.1.0.1:30000"
+    udp_addr = "10.1.0.1:30000"
+    authenticated_udp_addr = "10.1.0.1:30001"
+
+    [[participants]]
+    public_key = "04c119f863ba52c92844789f0337428a31cdb48cc2af42b0687249bb35bf6c635d5de1d6c5c60efc9dcb3a0d37f1d08720acad993ebce1c09be3e12364c690fe82"
+    private_key = "dcbc7994dfd484d5bd2b01e9d74ccaa85cf10537d604c863a0b86812f9002173"
+    tcp_addr = "10.1.0.2:30000"
+    udp_addr = "10.1.0.2:30000"
+    authenticated_udp_addr = "10.1.0.2:30001"
+
+    [[participants]]
+    public_key = "044c26a6d1159f32a8d653db2fd64f7164123f0dbdb77f633776a6fe19039c52a65c3d6ab37869e1112ff1709d6aa973ab6c79c6d7df58921133fb6b8bd479627a"
+    private_key = "0e2bacc49ae3d4cb828d8ab6db47780ff8b568f2d143d860050bf96968de1f5a"
+    tcp_addr = "10.1.0.3:30000"
+    udp_addr = "10.1.0.3:30000"
+    authenticated_udp_addr = "10.1.0.3:30001"
+
+    [[participants]]
+    public_key = "043eddeda4da24941319df8dca3ea701f5d033208f6d7febe0d4e584a2e53d5ba1e9a38cf96e461a15bf8ae75804990333a9dd3f0d69e896e8b1065d265c66964c"
+    private_key = "ff80acc9bd10b6db3e49c2caf33a02bbc2696ae195e7c06ec0f3d1b9f339c722"
+    tcp_addr = "10.1.0.4:30000"
+    udp_addr = "10.1.0.4:30000"
+    authenticated_udp_addr = "10.1.0.4:30001"
+
+    [[participants]]
+    public_key = "042ad070e3835e52e0cf4e487647d76750dd2a32f2ce39499f122ebaf4025db20b9e91d39e72d4ceeb22c0e4670a769d80a034ce20eeea8d345d260d32f9ad4636"
+    private_key = "9ad992652bb87b0f4f8b611cc839e46e938022c0f0d6a5e2f7e53c1c760a520e"
+    tcp_addr = "10.1.0.5:30000"
+    udp_addr = "10.1.0.5:30000"
+    authenticated_udp_addr = "10.1.0.5:30001"
+
+    [[participants]]
+    public_key = "049b20fc5ca72473531914e2b00799f5fcaa41dbc4b859ee821e30ff4347092621858eb66b7447917bcbf4aaba9bb4c8b6e462320ed2d70924c1e9c980e0ab5acf"
+    private_key = "9f858becdfa8999833335976e003fab0ef1d1103825a9322c8a53bea05c066b5"
+    tcp_addr = "10.1.0.6:30000"
+    udp_addr = "10.1.0.6:30000"
+    authenticated_udp_addr = "10.1.0.6:30001"
+
+    [[participants]]
+    public_key = "045f238ca69dfa321d8fa1754d073610017eb97e62df4897c95d9a000bca0d046ddf72ba9f4d923197be5f6de2db9786dd846205d315701dd7374b714b90cf8bd8"
+    private_key = "aeb30052707a6bcf7223695954c5d4ca298289d639f568e63f8e014b82934003"
+    tcp_addr = "10.1.0.7:30000"
+    udp_addr = "10.1.0.7:30000"
+    authenticated_udp_addr = "10.1.0.7:30001"
+
+    [[participants]]
+    public_key = "04fc2f95930628fc159ad186e6ca53a3cb2ec852ef793f5d30ebb764db37fa9a8a7c942bc4500a326d2a041b6a4d1e76ed920bf805c3751a7a236374f5c45eb09b"
+    private_key = "50f2546b0199dd09eae5761a4baa3f70e6f2fb4c2b9f5e096c12df10049e46c8"
+    tcp_addr = "10.1.0.8:30000"
+    udp_addr = "10.1.0.8:30000"
+    authenticated_udp_addr = "10.1.0.8:30001"
+
+    [[participants]]
+    public_key = "044e40085e1948c78a62bbc5b6e99eb7a2077870a7f631350c63924965e50e81336eb54ec26918913fb930a059ad5b9c27eb522b2ac7adec1e60b920cb83df039e"
+    private_key = "2104b3f7edb30a7a5f05f42a7abcc06c8bd786225dd0fa885e3038dbceb122cd"
+    tcp_addr = "10.1.0.9:30000"
+    udp_addr = "10.1.0.9:30000"
+    authenticated_udp_addr = "10.1.0.9:30001"
+
+    [[participants]]
+    public_key = "0435b2d7247f699e4d2d85918b1e821efcafd4c665b0da05525306227afc13e2312513886f1a7908a21fc96b25a26418a036d7eaedd698648fe556be4ffec8e08e"
+    private_key = "f92f79546b4d72da312c4d318c1260ce94e7c27ab0a1ea1f207569bc714b94c9"
+    tcp_addr = "10.1.0.10:30000"
+    udp_addr = "10.1.0.10:30000"
+    authenticated_udp_addr = "10.1.0.10:30001"
+
+  entrypoint.sh: |
+    #!/bin/bash
+    set -e
+
+    POD_INDEX=$(echo $HOSTNAME | grep -o '[0-9]*$')
+    export NODE_INDEX=$((POD_INDEX + 1))
+
+    echo "pod_index=$POD_INDEX node_index=$NODE_INDEX hostname=$HOSTNAME"
+
+    if [ "$POD_INDEX" = "0" ]; then
+      echo "starting as producer"
+      exec /app/latency producer \
+        --cluster /config/cluster.toml \
+        --cluster-size 10 \
+        --interval 10s \
+        --size 2MB
+    else
+      echo "starting as consumer"
+      exec /app/latency consumer \
+        --cluster /config/cluster.toml \
+        --cluster-size 10
+    fi
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-0
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.1\"]"
+spec:
+  hostname: latency-0
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-1
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.2\"]"
+spec:
+  hostname: latency-1
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-2
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.3\"]"
+spec:
+  hostname: latency-2
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-3
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.4\"]"
+spec:
+  hostname: latency-3
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-4
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.5\"]"
+spec:
+  hostname: latency-4
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-5
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.6\"]"
+spec:
+  hostname: latency-5
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-6
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.7\"]"
+spec:
+  hostname: latency-6
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-7
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.8\"]"
+spec:
+  hostname: latency-7
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-8
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.9\"]"
+spec:
+  hostname: latency-8
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: latency-9
+  namespace: default
+  labels:
+    app: latency
+  annotations:
+    cni.projectcalico.org/ipAddrs: "[\"10.1.0.10\"]"
+spec:
+  hostname: latency-9
+  containers:
+  - name: latency
+    image: latency:latest
+    imagePullPolicy: Never
+    command:
+    - /bin/bash
+    - /config/entrypoint.sh
+    env:
+    - name: RUST_LOG
+      value: "info"
+    volumeMounts:
+    - name: config
+      mountPath: /config
+    ports:
+    - containerPort: 30000
+      name: tcp
+      protocol: TCP
+    - containerPort: 30000
+      name: udp
+      protocol: UDP
+    - containerPort: 30001
+      name: auth-udp
+      protocol: UDP
+  volumes:
+  - name: config
+    configMap:
+      name: latency-config
+      defaultMode: 0755

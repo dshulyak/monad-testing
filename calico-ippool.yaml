@@ -1,0 +1,10 @@
+apiVersion: crd.projectcalico.org/v1
+kind: IPPool
+metadata:
+  name: latency-pool
+spec:
+  cidr: 10.1.0.0/24
+  ipipMode: Never
+  natOutgoing: true
+  disabled: false
+  nodeSelector: all()
