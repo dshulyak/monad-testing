@@ -4,7 +4,7 @@ metadata:
   name: network-partition
   namespace: default
 spec:
-  schedule: "*/20 * * * *"
+  schedule: "20 * * * *"
   type: NetworkChaos
   networkChaos:
     action: partition
@@ -19,4 +19,4 @@ spec:
           - latency-4
           - latency-5
     direction: both
-    duration: "3m30s"
+    duration: "5m"

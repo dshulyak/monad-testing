@@ -4,7 +4,7 @@ metadata:
   name: pod-failure
   namespace: default
 spec:
-  schedule: "*/25 * * * *"
+  schedule: "0 * * * *"
   type: PodChaos
   podChaos:
     action: pod-failure
@@ -18,4 +18,4 @@ spec:
         default:
           - latency-6
           - latency-7
-    duration: "4m"
+    duration: "5m"
