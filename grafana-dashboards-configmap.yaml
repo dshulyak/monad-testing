@@ -128,7 +128,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m]) * 100",
+              "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval]) * 100",
               "legendFormat": "{{pod}} - {{container}}",
               "range": true,
               "refId": "A"
@@ -199,7 +199,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])) by (pod) * 100",
+              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod) * 100",
               "legendFormat": "{{pod}}",
               "range": true,
               "refId": "A"
@@ -564,7 +564,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_receive_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_receive_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "legendFormat": "{{pod}} - RX",
               "range": true,
               "refId": "A"
@@ -575,7 +575,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_transmit_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_transmit_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "hide": false,
               "legendFormat": "{{pod}} - TX",
               "range": true,
@@ -668,7 +668,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_receive_packets_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_receive_packets_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "legendFormat": "{{pod}} - RX Packets",
               "range": true,
               "refId": "A"
@@ -679,7 +679,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_transmit_packets_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_transmit_packets_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "hide": false,
               "legendFormat": "{{pod}} - TX Packets",
               "range": true,
@@ -776,7 +776,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_receive_packets_dropped_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_receive_packets_dropped_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "legendFormat": "{{pod}} - RX Dropped",
               "range": true,
               "refId": "A"
@@ -787,7 +787,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_transmit_packets_dropped_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_transmit_packets_dropped_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "hide": false,
               "legendFormat": "{{pod}} - TX Dropped",
               "range": true,
@@ -799,7 +799,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_receive_errors_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_receive_errors_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "hide": false,
               "legendFormat": "{{pod}} - RX Errors",
               "range": true,
@@ -811,7 +811,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_network_transmit_errors_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_network_transmit_errors_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "hide": false,
               "legendFormat": "{{pod}} - TX Errors",
               "range": true,
@@ -904,7 +904,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "sum(rate(container_network_tcp_usage_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])) by (pod, tcp_state)",
+              "expr": "sum(rate(container_network_tcp_usage_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])) by (pod, tcp_state)",
               "legendFormat": "{{pod}} - {{tcp_state}}",
               "range": true,
               "refId": "A"
@@ -1009,7 +1009,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_fs_reads_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_fs_reads_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "legendFormat": "{{pod}} - {{device}} - Read",
               "range": true,
               "refId": "A"
@@ -1020,7 +1020,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(container_fs_writes_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
+              "expr": "rate(container_fs_writes_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[$interval])",
               "hide": false,
               "legendFormat": "{{pod}} - {{device}} - Write",
               "range": true,
@@ -1207,6 +1207,43 @@ data:
             "skipUrlSync": false,
             "sort": 0,
             "type": "query"
+          },
+          {
+            "current": {
+              "selected": true,
+              "text": "30s",
+              "value": "30s"
+            },
+            "hide": 0,
+            "includeAll": false,
+            "label": "Interval",
+            "multi": false,
+            "name": "interval",
+            "options": [
+              {
+                "selected": true,
+                "text": "30s",
+                "value": "30s"
+              },
+              {
+                "selected": false,
+                "text": "1m",
+                "value": "1m"
+              },
+              {
+                "selected": false,
+                "text": "5m",
+                "value": "5m"
+              },
+              {
+                "selected": false,
+                "text": "10m",
+                "value": "10m"
+              }
+            ],
+            "query": "30s,1m,5m,10m",
+            "skipUrlSync": false,
+            "type": "custom"
           }
         ]
       },
@@ -1551,7 +1588,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(raptorcast_messages_received{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(raptorcast_messages_received{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Received Rate",
               "range": true,
               "refId": "A"
@@ -1562,7 +1599,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(raptorcast_messages_sent{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(raptorcast_messages_sent{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Sent Rate",
               "range": true,
@@ -1831,7 +1868,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_written{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_written{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Auth UDP TX",
               "range": true,
               "refId": "A"
@@ -1842,7 +1879,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_read{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_raptorcast_auth_authenticated_udp_bytes_read{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Auth UDP RX",
               "range": true,
@@ -1854,7 +1891,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_written{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_written{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Non-Auth UDP TX",
               "range": true,
@@ -1866,7 +1903,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_read{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_raptorcast_auth_non_authenticated_udp_bytes_read{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Non-Auth UDP RX",
               "range": true,
@@ -1957,6 +1994,43 @@ data:
             "skipUrlSync": false,
             "sort": 0,
             "type": "query"
+          },
+          {
+            "current": {
+              "selected": true,
+              "text": "30s",
+              "value": "30s"
+            },
+            "hide": 0,
+            "includeAll": false,
+            "label": "Interval",
+            "multi": false,
+            "name": "interval",
+            "options": [
+              {
+                "selected": true,
+                "text": "30s",
+                "value": "30s"
+              },
+              {
+                "selected": false,
+                "text": "1m",
+                "value": "1m"
+              },
+              {
+                "selected": false,
+                "text": "5m",
+                "value": "5m"
+              },
+              {
+                "selected": false,
+                "text": "10m",
+                "value": "10m"
+              }
+            ],
+            "query": "30s,1m,5m,10m",
+            "skipUrlSync": false,
+            "type": "custom"
           }
         ]
       },
@@ -2299,7 +2373,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_state_session_established_initiator{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_state_session_established_initiator{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Established (Initiator)",
               "range": true,
               "refId": "A"
@@ -2310,7 +2384,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_state_session_established_responder{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_state_session_established_responder{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Established (Responder)",
               "range": true,
@@ -2322,7 +2396,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_state_session_terminated{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_state_session_terminated{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Terminated",
               "range": true,
@@ -2526,7 +2600,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_filter_pass{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_filter_pass{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Pass",
               "range": true,
               "refId": "A"
@@ -2537,7 +2611,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_filter_send_cookie{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_filter_send_cookie{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Send Cookie",
               "range": true,
@@ -2549,7 +2623,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_filter_drop{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_filter_drop{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Drop",
               "range": true,
@@ -2658,7 +2732,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_api_connect{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_api_connect{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Connect",
               "range": true,
               "refId": "A"
@@ -2669,7 +2743,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_api_disconnect{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_api_disconnect{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Disconnect",
               "range": true,
@@ -2765,7 +2839,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_api_encrypt_by_public_key{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_api_encrypt_by_public_key{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Encrypt by PubKey",
               "range": true,
               "refId": "A"
@@ -2776,7 +2850,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_api_encrypt_by_socket{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_api_encrypt_by_socket{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Encrypt by Socket",
               "range": true,
@@ -2788,7 +2862,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_api_decrypt{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_api_decrypt{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Decrypt",
               "range": true,
@@ -2897,7 +2971,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_connect{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_connect{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Connect",
               "range": true,
               "refId": "A"
@@ -2908,7 +2982,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_decrypt{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_decrypt{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Decrypt",
               "range": true,
@@ -2920,7 +2994,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_encrypt_by_public_key{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_encrypt_by_public_key{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Encrypt PubKey",
               "range": true,
@@ -2932,7 +3006,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_encrypt_by_socket{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_encrypt_by_socket{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Encrypt Socket",
               "range": true,
@@ -3028,7 +3102,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_session_exhausted{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_session_exhausted{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Session Exhausted",
               "range": true,
               "refId": "A"
@@ -3039,7 +3113,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_mac1_verification_failed{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_mac1_verification_failed{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - MAC1 Verification",
               "range": true,
@@ -3051,7 +3125,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_timestamp_replay{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_timestamp_replay{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Timestamp Replay",
               "range": true,
@@ -3063,7 +3137,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_error_session_not_found{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_error_session_not_found{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Session Not Found",
               "range": true,
@@ -3172,7 +3246,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_dispatch_handshake_initiation{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_dispatch_handshake_initiation{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Initiation",
               "range": true,
               "refId": "A"
@@ -3183,7 +3257,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_dispatch_handshake_response{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_dispatch_handshake_response{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Response",
               "range": true,
@@ -3195,7 +3269,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_dispatch_cookie_reply{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_dispatch_cookie_reply{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Cookie Reply",
               "range": true,
@@ -3291,7 +3365,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_enqueued_handshake_init{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_enqueued_handshake_init{exported_job=~\"$job\"}[$interval])",
               "legendFormat": "{{exported_job}} - Init",
               "range": true,
               "refId": "A"
@@ -3302,7 +3376,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_enqueued_handshake_response{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_enqueued_handshake_response{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Response",
               "range": true,
@@ -3314,7 +3388,7 @@ data:
                 "uid": "${datasource}"
               },
               "editorMode": "code",
-              "expr": "rate(monad_wireauth_enqueued_keepalive{exported_job=~\"$job\"}[5m])",
+              "expr": "rate(monad_wireauth_enqueued_keepalive{exported_job=~\"$job\"}[$interval])",
               "hide": false,
               "legendFormat": "{{exported_job}} - Keepalive",
               "range": true,
@@ -3322,6 +3396,520 @@ data:
             }
           ],
           "title": "Enqueued Messages Rate",
+          "type": "timeseries"
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 54
+          },
+          "id": 106,
+          "panels": [],
+          "title": "Additional State Metrics",
+          "type": "row"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 55
+          },
+          "id": 12,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "monad_wireauth_state_sessions_by_public_key{exported_job=~\"$job\"}",
+              "legendFormat": "{{exported_job}} - By PubKey",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "monad_wireauth_state_sessions_by_socket{exported_job=~\"$job\"}",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - By Socket",
+              "range": true,
+              "refId": "B"
+            }
+          ],
+          "title": "Session Tracking",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 55
+          },
+          "id": 13,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_api_dispatch_control{exported_job=~\"$job\"}[$interval])",
+              "legendFormat": "{{exported_job}} - Dispatch Control",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_api_next_packet{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Next Packet",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_api_tick{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Tick",
+              "range": true,
+              "refId": "C"
+            }
+          ],
+          "title": "Additional API Operations Rate",
+          "type": "timeseries"
+        },
+        {
+          "collapsed": false,
+          "gridPos": {
+            "h": 1,
+            "w": 24,
+            "x": 0,
+            "y": 63
+          },
+          "id": 107,
+          "panels": [],
+          "title": "Additional Errors",
+          "type": "row"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 0,
+            "y": 64
+          },
+          "id": 14,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_session_index_not_found{exported_job=~\"$job\"}[$interval])",
+              "legendFormat": "{{exported_job}} - Index Not Found",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_invalid_receiver_index{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Invalid Receiver",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_session_not_established_for_address{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Not Established",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_dispatch_control{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Dispatch Control",
+              "range": true,
+              "refId": "D"
+            }
+          ],
+          "title": "Session & Dispatch Errors Rate",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${datasource}"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "barWidthFactor": 0.6,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "normal"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 8,
+            "w": 12,
+            "x": 12,
+            "y": 64
+          },
+          "id": 15,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "lastNotNull"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_handshake_init_validation{exported_job=~\"$job\"}[$interval])",
+              "legendFormat": "{{exported_job}} - Init Validation",
+              "range": true,
+              "refId": "A"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_handshake_init_responder_new{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Responder New",
+              "range": true,
+              "refId": "B"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_cookie_reply{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Cookie Reply",
+              "range": true,
+              "refId": "C"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "${datasource}"
+              },
+              "editorMode": "code",
+              "expr": "rate(monad_wireauth_error_handshake_response_validation{exported_job=~\"$job\"}[$interval])",
+              "hide": false,
+              "legendFormat": "{{exported_job}} - Response Validation",
+              "range": true,
+              "refId": "D"
+            }
+          ],
+          "title": "Handshake Errors Rate",
           "type": "timeseries"
         }
       ],
@@ -3405,6 +3993,43 @@ data:
             "skipUrlSync": false,
             "sort": 0,
             "type": "query"
+          },
+          {
+            "current": {
+              "selected": true,
+              "text": "30s",
+              "value": "30s"
+            },
+            "hide": 0,
+            "includeAll": false,
+            "label": "Interval",
+            "multi": false,
+            "name": "interval",
+            "options": [
+              {
+                "selected": true,
+                "text": "30s",
+                "value": "30s"
+              },
+              {
+                "selected": false,
+                "text": "1m",
+                "value": "1m"
+              },
+              {
+                "selected": false,
+                "text": "5m",
+                "value": "5m"
+              },
+              {
+                "selected": false,
+                "text": "10m",
+                "value": "10m"
+              }
+            ],
+            "query": "30s,1m,5m,10m",
+            "skipUrlSync": false,
+            "type": "custom"
           }
         ]
       },

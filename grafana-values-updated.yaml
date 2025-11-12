@@ -37,4 +37,5 @@ service:
   type: NodePort
   port: 80
 
-adminPassword: admin
+adminUser: test
+adminPassword: test
