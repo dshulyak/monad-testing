@@ -204,6 +204,75 @@ EOF
     echo "grafana password: admin"
 }
 
+install_dashboards() {
+    echo "installing grafana dashboards"
+
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+    if [ -d "$SCRIPT_DIR/grafana-dashboards" ]; then
+        kubectl create configmap grafana-dashboards \
+            --from-file="$SCRIPT_DIR/grafana-dashboards/raptorcast-latency-dashboard.json" \
+            --from-file="$SCRIPT_DIR/grafana-dashboards/wireauth-metrics-dashboard.json" \
+            --from-file="$SCRIPT_DIR/grafana-dashboards/pod-resources-dashboard.json" \
+            -n monitoring \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+        cat > /tmp/grafana-values-with-dashboards.yaml <<EOF
+datasources:
+  datasources.yaml:
+    apiVersion: 1
+    datasources:
+    - name: Prometheus
+      type: prometheus
+      access: proxy
+      orgId: 1
+      url: http://prometheus-server:80
+      isDefault: true
+      editable: true
+    - name: Loki
+      type: loki
+      access: proxy
+      orgId: 1
+      url: http://loki:3100
+      isDefault: false
+      editable: true
+
+dashboardProviders:
+  dashboardproviders.yaml:
+    apiVersion: 1
+    providers:
+    - name: 'default'
+      orgId: 1
+      folder: 'Monad BFT'
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/default
+
+dashboardsConfigMaps:
+  default: grafana-dashboards
+
+service:
+  type: NodePort
+  port: 80
+
+adminPassword: admin
+EOF
+
+        helm upgrade grafana grafana/grafana \
+            --namespace=monitoring \
+            --values=/tmp/grafana-values-with-dashboards.yaml \
+            --reuse-values=false || echo "note: grafana may need manual restart"
+
+        kubectl rollout restart deployment grafana -n monitoring
+
+        echo "grafana dashboards installed successfully"
+    else
+        echo "warning: grafana-dashboards directory not found, skipping dashboard installation"
+    fi
+}
+
 print_access_info() {
     echo ""
     echo "================================"
@@ -212,6 +281,7 @@ print_access_info() {
     echo ""
     echo "access services:"
     echo "grafana: minikube service grafana -n monitoring"
+    echo "grafana credentials: admin / admin"
     echo "chaos mesh dashboard: kubectl port-forward -n chaos-mesh svc/chaos-dashboard 2333:2333"
     echo ""
     echo "monitoring stack:"
@@ -222,6 +292,13 @@ print_access_info() {
     echo "grpc: otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4317"
     echo "http: otel-collector-opentelemetry-collector.monitoring.svc.cluster.local:4318"
     echo ""
+    echo "grafana dashboards installed in 'Monad BFT' folder:"
+    echo "  - Raptorcast Latency Metrics"
+    echo "  - WireAuth Metrics"
+    echo "  - Latency Pods Resource Monitoring"
+    echo ""
+    echo "for detailed access info, see: GRAFANA_ACCESS.md"
+    echo ""
 }
 
 main() {
@@ -231,6 +308,7 @@ main() {
     configure_calico
     install_chaos_mesh
     install_grafana
+    install_dashboards
     print_access_info
 }
 
