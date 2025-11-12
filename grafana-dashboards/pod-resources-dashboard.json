@@ -125,7 +125,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}[5m]) * 100",
+          "expr": "rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m]) * 100",
           "legendFormat": "{{pod}} - {{container}}",
           "range": true,
           "refId": "A"
@@ -196,7 +196,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}[5m])) by (pod) * 100",
+          "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])) by (pod) * 100",
           "legendFormat": "{{pod}}",
           "range": true,
           "refId": "A"
@@ -301,7 +301,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "container_memory_working_set_bytes{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}",
+          "expr": "container_memory_working_set_bytes{namespace=\"$namespace\", pod=~\"$pod\"}",
           "legendFormat": "{{pod}} - {{container}}",
           "range": true,
           "refId": "A"
@@ -393,7 +393,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "container_memory_rss{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}",
+          "expr": "container_memory_rss{namespace=\"$namespace\", pod=~\"$pod\"}",
           "legendFormat": "{{pod}} - {{container}}",
           "range": true,
           "refId": "A"
@@ -456,7 +456,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "sum(container_memory_working_set_bytes{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}) by (pod)",
+          "expr": "sum(container_memory_working_set_bytes{namespace=\"$namespace\", pod=~\"$pod\"}) by (pod)",
           "legendFormat": "{{pod}}",
           "range": true,
           "refId": "A"
@@ -1006,7 +1006,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(container_fs_reads_bytes_total{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}[5m])",
+          "expr": "rate(container_fs_reads_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
           "legendFormat": "{{pod}} - {{device}} - Read",
           "range": true,
           "refId": "A"
@@ -1017,7 +1017,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "rate(container_fs_writes_bytes_total{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}[5m])",
+          "expr": "rate(container_fs_writes_bytes_total{namespace=\"$namespace\", pod=~\"$pod\"}[5m])",
           "hide": false,
           "legendFormat": "{{pod}} - {{device}} - Write",
           "range": true,
@@ -1118,7 +1118,7 @@
             "uid": "${datasource}"
           },
           "editorMode": "code",
-          "expr": "(container_fs_usage_bytes{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"} / container_fs_limit_bytes{namespace=\"$namespace\", pod=~\"$pod\", container!=\"\"}) * 100",
+          "expr": "(container_fs_usage_bytes{namespace=\"$namespace\", pod=~\"$pod\"} / container_fs_limit_bytes{namespace=\"$namespace\", pod=~\"$pod\"}) * 100",
           "legendFormat": "{{pod}} - {{device}}",
           "range": true,
           "refId": "A"
