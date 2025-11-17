@@ -34,7 +34,24 @@ access at http://localhost:2333
 
 ## chaos experiments
 
-run periodic chaos experiments to test resilience:
+### constant network latency
+
+enable constant latency between pod buckets (5 buckets with 20-80ms incremental latency):
+
+```bash
+./chaos-experiments/manage.sh enable network-latency-constant
+```
+
+this creates a network topology with:
+- bucket-1 (latency-0,1) to bucket-2 (latency-2,3): 20ms
+- bucket-1 to bucket-3 (latency-4,5): 40ms
+- bucket-1 to bucket-4 (latency-6,7): 60ms
+- bucket-1 to bucket-5 (latency-8,9): 80ms
+- other bucket pairs: 20-40ms incremental latency
+
+### periodic chaos experiments
+
+run scheduled chaos experiments to test resilience:
 
 ```bash
 cd chaos-experiments
@@ -46,6 +63,7 @@ cd chaos-experiments
 
 ./manage.sh status
 ./manage.sh disable network-packet-loss
+./manage.sh disable network-latency-constant
 ```
 
 see [chaos-experiments/README.md](chaos-experiments/README.md) for details.

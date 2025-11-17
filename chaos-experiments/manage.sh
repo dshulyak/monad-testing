@@ -10,16 +10,24 @@ usage() {
     echo "  network-partition    - isolate latency-4,5 every 20min for 3.5min"
     echo "  pod-failure          - make latency-6,7 unavailable every 25min for 4min"
     echo ""
+    echo "frequent experiments:"
+    echo "  frequent-network-partition-10s - partition bucket-1 from bucket-2 every 10min for 10s"
+    echo "  frequent-network-partition-40s - partition bucket-1 from bucket-2 every 10min for 40s"
+    echo "  frequent-pod-failure-10s       - fail latency-6,7 every 2min for 10s"
+    echo "  frequent-pod-failure-40s       - fail latency-6,7 every 2min for 40s"
+    echo ""
     echo "constant experiments:"
     echo "  network-latency-constant - 5 buckets with 20ms incremental latency (20-100ms)"
     echo ""
     echo "  all                 - all periodic experiments"
+    echo "  all-frequent        - all frequent experiments"
     echo "  all-with-latency    - all experiments including constant latency"
     echo ""
     echo "examples:"
     echo "  $0 enable network-packet-loss"
     echo "  $0 enable network-latency-constant"
     echo "  $0 enable all"
+    echo "  $0 enable all-frequent"
     echo "  $0 disable pod-kill"
     echo "  $0 status"
     exit 1
@@ -32,11 +40,23 @@ enable_experiment() {
         kubectl apply -f "$EXPERIMENTS_DIR/network-packet-loss.yaml"
         kubectl apply -f "$EXPERIMENTS_DIR/network-partition.yaml"
         kubectl apply -f "$EXPERIMENTS_DIR/pod-kill.yaml"
+    elif [ "$exp" = "all-frequent" ]; then
+        echo "enabling all frequent chaos experiments..."
+        echo "labeling pods with buckets..."
+        "$EXPERIMENTS_DIR/label-buckets.sh"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-network-partition-10s.yaml"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-network-partition-40s.yaml"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-pod-failure-10s.yaml"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-pod-failure-40s.yaml"
     elif [ "$exp" = "all-with-latency" ]; then
         echo "enabling all chaos experiments including constant latency..."
         kubectl apply -f "$EXPERIMENTS_DIR/network-packet-loss.yaml"
         kubectl apply -f "$EXPERIMENTS_DIR/network-partition.yaml"
         kubectl apply -f "$EXPERIMENTS_DIR/pod-kill.yaml"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-network-partition-10s.yaml"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-network-partition-40s.yaml"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-pod-failure-10s.yaml"
+        kubectl apply -f "$EXPERIMENTS_DIR/frequent-pod-failure-40s.yaml"
         echo "labeling pods with buckets..."
         "$EXPERIMENTS_DIR/label-buckets.sh"
         echo "applying latency between buckets..."
@@ -50,7 +70,7 @@ enable_experiment() {
         local file="$EXPERIMENTS_DIR/${exp}.yaml"
         if [ ! -f "$file" ]; then
             echo "error: experiment '$exp' not found"
-            echo "available: network-packet-loss, network-partition, pod-kill, network-latency-constant"
+            echo "available: network-packet-loss, network-partition, pod-kill, network-latency-constant, frequent-network-partition-10s, frequent-network-partition-40s, frequent-pod-failure-10s, frequent-pod-failure-40s"
             exit 1
         fi
         echo "enabling experiment: $exp"
@@ -65,11 +85,21 @@ disable_experiment() {
         kubectl delete schedule network-packet-loss -n default --ignore-not-found
         kubectl delete schedule network-partition -n default --ignore-not-found
         kubectl delete schedule pod-failure -n default --ignore-not-found
+    elif [ "$exp" = "all-frequent" ]; then
+        echo "disabling all frequent chaos experiments..."
+        kubectl delete schedule frequent-network-partition-10s -n default --ignore-not-found
+        kubectl delete schedule frequent-network-partition-40s -n default --ignore-not-found
+        kubectl delete schedule frequent-pod-failure-10s -n default --ignore-not-found
+        kubectl delete schedule frequent-pod-failure-40s -n default --ignore-not-found
     elif [ "$exp" = "all-with-latency" ]; then
         echo "disabling all chaos experiments including constant latency..."
         kubectl delete schedule network-packet-loss -n default --ignore-not-found
         kubectl delete schedule network-partition -n default --ignore-not-found
         kubectl delete schedule pod-failure -n default --ignore-not-found
+        kubectl delete schedule frequent-network-partition-10s -n default --ignore-not-found
+        kubectl delete schedule frequent-network-partition-40s -n default --ignore-not-found
+        kubectl delete schedule frequent-pod-failure-10s -n default --ignore-not-found
+        kubectl delete schedule frequent-pod-failure-40s -n default --ignore-not-found
         kubectl delete networkchaos latency-b1-to-b2 -n default --ignore-not-found
         kubectl delete networkchaos latency-b1-to-b3 -n default --ignore-not-found
         kubectl delete networkchaos latency-b1-to-b4 -n default --ignore-not-found

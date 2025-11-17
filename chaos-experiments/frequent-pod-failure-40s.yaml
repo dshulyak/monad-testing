@@ -1,0 +1,21 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: Schedule
+metadata:
+  name: frequent-pod-failure-40s
+  namespace: default
+spec:
+  schedule: "*/10 * * * *"
+  type: PodChaos
+  podChaos:
+    action: pod-failure
+    mode: all
+    selector:
+      namespaces:
+        - default
+      labelSelectors:
+        app: latency
+      pods:
+        default:
+          - latency-6
+          - latency-7
+    duration: "40s"
